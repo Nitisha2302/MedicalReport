@@ -71,7 +71,7 @@ class AuthController extends Controller
 			return $this->errorResponse('validation_error',$validator->errors(), 422 );
 		}
 
-		
+
 		$credentials = $request->only('password');
 
 		if (isset($request->email) && !empty($request->email)) {
@@ -80,6 +80,7 @@ class AuthController extends Controller
 			$credentials['username'] = $request->username;
 		}
 
+		
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
 			if($user->hasRole('user')){
